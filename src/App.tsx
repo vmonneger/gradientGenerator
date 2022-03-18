@@ -13,18 +13,16 @@ function App() {
   const [breakPoint1, setBreakPoint1] = useState()
   const [breakPoint2, setBreakPoint2] = useState()
   const [breakPoint3, setBreakPoint3] = useState()
+  const [rotation, setDeegre] = useState()
   const [linearGradient, setLinearGradient] = useState('')
-  
 
   useEffect(() => {
-    if (color1 && color2 && color3) {
-    const gradient = `${color1 + ' ' + breakPoint1 + '%, '+ color2 + ' ' + breakPoint2 + '%, ' + color3 + ' ' + breakPoint3 + '%'}`
+    if (color1 && color2 && color3 && rotation !== undefined) {
+    const gradient = `${rotation + 'deg, ' + color1 + ' ' + breakPoint1 + '%, '+ color2 + ' ' + breakPoint2 + '%, ' 
+    + color3 + ' ' + breakPoint3 + '%'}`
     setLinearGradient(gradient)
     }
-    if (breakPoint1 && breakPoint2 && breakPoint3) {
-      
-    }
-  }, [color1, color2, color3, breakPoint1, breakPoint2, breakPoint3])
+  }, [color1, color2, color3, breakPoint1, breakPoint2, breakPoint3, rotation])
 
   return (
     <div className="App">
@@ -42,10 +40,17 @@ function App() {
           <InputColor name="color 3" initColor="#ffd600" getColor={setColor3} />
         </Card>
         <Card>
-          <InputRange />
+          <InputRange name="Rotation" getRotation={setDeegre} />
         </Card>
-        <GradientBlock setLinearGradient={linearGradient}/>
-        <h1>{color1} {breakPoint1}% {color2} {breakPoint2}% {color3} {breakPoint3}%</h1>
+        <div className="fit">
+          <GradientBlock setLinearGradient={linearGradient}/>
+        </div>
+        <div className="fit">
+          <h1>
+            background: linear-gradient({rotation}deg, {color1} {breakPoint1}%, {color2} {breakPoint2}%, 
+            {color3} {breakPoint3}%)
+          </h1>
+        </div>
       </div>
     </div>
   );

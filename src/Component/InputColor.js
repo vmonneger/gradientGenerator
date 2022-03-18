@@ -8,9 +8,9 @@ export default function InputColor({name, getColor, initColor}) {
   })
 
   return(
-    <div>
-      <label className="mr" forhtml={name}>{name}</label>
-      <input type="color" id={name} name={name} value={color} onChange={e => setColor(e.target.value)} />
-    </div>
+    <>
+      <label forhtml={name}>{name}</label>
+      <input style={{width: "100%"}} type="color" id={name} name={name} value={color} onChange={e => setColor(e.target.value)} />
+    </>
   )
 }
